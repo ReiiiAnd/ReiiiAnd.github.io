@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+/**/
+
+
+body{
+	box-sizing: border-box;
+	padding:0;
+	margin:0;
+}
+
+h1,h2,h3{
+	font-family: 'Gloria Hallelujah', cursive;
+	margin-bottom: 0;
+	margin-top:0;
+}
+
+#Identification{
+	width: 100%;
+	padding-top: 16px;
+	padding-bottom: 35px;
+	background-color: #888;
+	text-align: center;
+	background: linear-gradient(to right, #AAA, #DDD, #666);
+}
+
+#KeyBox{
+	width: 60%;
+	margin: auto;
+	padding: 5px;
+	background: #FFF;
+	border-radius: 9px;
+	border: solid #333;
+	background-color: #333;
+
+	box-shadow:0px 0px 15px #DAA;
+	-webkit-box-shadow:0px 0px 15px #DAA;
+	-moz-box-shadow:0px 0px 15px #DAA);
+}
+
+input[name="passwrd"]{
+	box-sizing: border-box;
+
+	color: #FFF;
+	background: none;
+	font-size:24px;
+	/*float: left;*/
+	width:60%;
+	border:0;
+	margin:0;
+}
+
+input[name="go"]{
+	box-sizing: border-box;
+
+	color:yellow;
+	background: none;
+	font-size:24px;
+	float:right;
+	width:40%;
+	margin:0;
+	border:0;
+}
+
+#PersonalPage{
+	box-sizing: border-box;
+	margin:0;
+	padding-top:40px;
+	box-shadow: 0px -10px 8px #333;
+}
+
+#Title{
+	width:90%;
+	margin:auto;
+	margin-bottom: 20px;
+
+	text-align: center;
+}
+
+#ButtonShell{
+	text-align:center;
+	margin: auto;
+}
+.Volume{
+	position: relative;
+	top: 90px;
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	border-radius:100%;
+	border: 3px solid rgba(0,0,0);
+	background: rgba(0,0,0);
+}
+
+.Volume:hover {
+	transform: scale(1.2, 1.2);
+}
+
+#LinkList{
+	visibility: hidden;
+	width: 60%;
+	height: 30px;
+	margin: auto;
+}
+
+.IconBox{
+	margin-top: 10px;
+	box-sizing: border-box;
+	margin: 0;
+	float:left;
+	width:33%;
+}
+
+#myvk{
+	display:none;
+}
+
+#mytg{
+	display:none;
+}
+
+#myin{
+	display:none;
+}
+
+#vk{
+	content: url(http://favicon.yandex.net/favicon/vk.com);
+}
+
+#tg{
+	content: url(http://favicon.yandex.net/favicon/t.me);
+}
+
+#in{
+	content: url(http://favicon.yandex.net/favicon/instagram.com);
+}
+
+.Circle{
+	width:20px;
+	height:20px;
+	box-sizing: border-box;
+	padding:0;
+	margin:auto;
+	border-radius:100%;
+	border: 3px solid #FFF;
+	box-shadow: 0px 0px 9px #AAA
+}
+
+#LinkTitle{
+	margin: auto;
+	margin-top: 80px;
+	display : none;
+	width:66%;
+	z-index: 300;
+	font-family: 'Gloria Hallelujah';
+	text-align: center;
+	font-size: 16px;
+	color:#FF0;
+	/*border-radius : 7px;
+	box-sizing: border-box;
+	border: solid 3px #FF0;*/
+	text-shadow: 1px 1px 5px #FF7;
+}
+
+#UniversePicture{
+	width:100px;
+	height:200px;
+}
+/*
+#UniversePicture{
+	width:100%;
+	margin-top: 10px;
+}
+
+.Item1by1{
+	padding-top:20%;
+}
+
+.ImageShell{
+	position:relative;
+	top: 80px;
+	width: 20%;
+	margin:auto;
+
+	border: 5px dotted #CCC;
+	border-radius: 5%;
+}
+
+.ImageShell:before{
+	display:block;
+	content: "";
+	width: 100%;
+}
+
+.ImageBox{
+	position:absolute;
+	top: 0;
+  	left: 0;
+  	right: 0;
+  	bottom: 0;
+
+	background-image: url(../hello.png);
+	background-attachment: local;
+	background-position: 50% 50%;
+	background-size: 80% 80%;
+	background-repeat: no-repeat;
+}*/
+
+@media(max-width: 540px){
+	#LinkList{
+		width: 90%;
+		height: 20px;
+		margin: auto;
+
+	}
+}
+
+@media(max-width: 300px){
+	#LinkList{
+		width: 100%;
+		height: 20px;
+
+	}
+}
