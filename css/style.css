@@ -135,6 +135,7 @@ input[name="go"]{
 }
 
 .Circle{
+	z-index: 3;
 	width:20px;
 	height:20px;
 	box-sizing: border-box;
@@ -164,6 +165,21 @@ input[name="go"]{
 #UniversePicture{
 	width:100px;
 	height:200px;
+}
+
+.Star{
+	z-index:2;
+	background-color: #FF4;
+	width: 10px;
+	height: 10px;
+
+	border: solid 1px #FF9;
+	border-radius: 100%;
+	box-sizing: border-box;
+	box-shadow:0px 0px 10px #FFA;
+	-webkit-box-shadow:0px 0px 10px #FFA;
+	-moz-box-shadow:0px 0px 10px #FFA;
+
 }
 /*
 #UniversePicture{

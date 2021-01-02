@@ -23,6 +23,7 @@ function O(i){
 
 			setTimeout(function(){
 				clearInterval(a)
+				GenerateUniverse()
 			}, 1000)
 
 			S('body').background = 'black'
@@ -34,8 +35,35 @@ function O(i){
 
 		})
 
-		function GenerateUniverse(){
+		function getRandomInt(min, max) {
+  			return Math.floor(Math.random() * (max - min)) + min;
+		}
 
+		function CreateStar(count){
+			const pageWidth = document.documentElement.scrollWidth
+			const pageHeight = document.documentElement.scrollHeight
+
+			var newStar = document.createElement('div')
+			newStar.id = 'star' + count
+			newStar.className = 'Star'
+			document.getElementById('PersonalPage').appendChild(newStar)
+
+			S(newStar).position = 'absolute'
+			var top = getRandomInt(100, pageHeight);
+			var left = getRandomInt(0, pageWidth);
+			S(newStar).top = top + 'px'
+			S(newStar).left = left + 'px'
+
+
+			return newStar
+		}
+
+		function GenerateUniverse(){
+			
+
+			for(var i=0;i<16;++i){
+				CreateStar(i)
+			}
 		}
 
 		var LinkIconVk = O('vk_link')
