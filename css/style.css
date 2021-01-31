@@ -150,19 +150,22 @@ input[name="go"]{
 }
 
 .orbitals{
-	width:366px;
-	height:366px;
+	width:30px;
+	height:30px;
 	margin:auto;
 	position:relative;
 }
 
 .orbital{
-	width:366px;
-	height:366px;
+	width:30px;
+	height:30px;
 	margin:auto;
 	position:absolute;
 	left:0;
 	top:0;
+}
+
+.animate{
 	animation: 100s linear 0s normal none infinite running rot;
   	-webkit-animation: 100s linear 0s normal none infinite running rot;
 }
@@ -185,26 +188,29 @@ input[name="go"]{
 }
 
 @media (max-width:540px){
-	.orbitals{
+	h1,h2,h3{
+		font-size: 18px;
+	}
+	/*.orbitals{
 		width:360px;
 		height:360px;
 	}
 	.orbital{
 		width: 360px;
 		height: 360px;
-	}
+	}*/
 }
 
 @media (max-width:360px){
 	h1,h2,h3{
 		font-size: 14px;
 	}
-	.orbitals{
+	/*.orbitals{
 		width:240px;
 		height:240px;
 	}
 	.orbital{
 		width: 240px;
 		height: 240px;
-	}
+	}*/
 }

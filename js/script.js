@@ -1,5 +1,5 @@
 var 
-	ACTIVE_BUTTON = false;
+	ACTIVE_BUTTON = 0;
 
 
 		function O(i){
@@ -21,17 +21,21 @@ var
 		var start_button = O('clckForOpen');
 
 		start_button.addEventListener("click", function(){
-			if(ACTIVE_BUTTON == true){
+			if(ACTIVE_BUTTON == 2){
+				ACTIVE_BUTTON = 1;
 				finishModification();
-				ACTIVE_BUTTON = false;
+				setTimeout(function(){
+					ACTIVE_BUTTON = 0;
+				}, 2000)
 				return;
 			}
-			if(ACTIVE_BUTTON == false){
+			if(ACTIVE_BUTTON == 0){
+				ACTIVE_BUTTON = 1;
 				firstModification();
 				setTimeout(function(){
 					secondModification();
+					ACTIVE_BUTTON = 2;
 				}, 1000)
-				ACTIVE_BUTTON = true;
 				return;
 			}
 
@@ -44,19 +48,32 @@ var
 			}
 		}
 
+		function difMin(first, second){
+			if(first>second)return second;
+			return first;
+		}
+
 		function firstModification(){
 			var i = 0;
+			S('imageCircle').width = 0 + 'px';
+				S('imageCircle').height = 0 + 'px';
+				for(var temp = 1; temp < 8; ++temp){
+					var id_obj = 'object' + temp
+					S('object' + temp).width = 0 + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+					S('object' + temp).height = 0 + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+				}
 			S('imageCircle').display = 'block';
-			var dimentionSystem = 400;
+			var dimentionSystem = difMin(window.innerHeight, window.innerWidth);
 			var a = setInterval(function(){
 				i+=2;
-				//for(var temp = 1; temp < 8; ++temp){
-					//var id_obj = 'object' + temp
-					//S('object' + temp).width = digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
-					//S('object' + temp).height = digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
-				//}
+				S('imageCircle').width = digObj(i, 0, dimentionSystem) + 'px';
+				S('imageCircle').height = digObj(i, 0, dimentionSystem) + 'px';
+				for(var temp = 1; temp < 8; ++temp){
+					var id_obj = 'object' + temp
+					S('object' + temp).width = digObj(i, 0, dimentionSystem) + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+					S('object' + temp).height = digObj(i, 0, dimentionSystem) + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+				}
 				S('body').background = 'rgb(' + Number(255-i) +','+ Number(255-i) + ',' + Number(255-i) + ')';
-				//S('Identification').boxShadow = '0px 0px 10px rgba(' + Number(55 + i) + ',' + Number(55 + i) + ',' + Number(55 - i/4) +','+0.9+')'
 				if(i<40){
 					S('volume').background = 'rgb(' + Number(15 + i*6) +','+ Number(15 + i*6) + ',' + Number(15 + i*6) + ')';
 					S('volume').border = 'none'
@@ -66,11 +83,17 @@ var
 
 			setTimeout(function(){
 				clearInterval(a)
+				object1.classList.add('animate');
+				object2.classList.add('animate');
+				object3.classList.add('animate');
+				object4.classList.add('animate');
+				object5.classList.add('animate');
+				object6.classList.add('animate');
+				object7.classList.add('animate');
 			}, 1000)
 		}
 
 		var animationButton;
-
 		function secondModification(){
 				var arcsin = 0;
 					animationButton = setInterval(function(){
@@ -82,21 +105,31 @@ var
 					var num = arcsin - 9;
 					S('volume').boxShadow = '0px 0px ' + Number(5 + num*num/10) + 'px rgb(240,240,240)';
 				}, 100);
-			
 		}
 
 		function finishModification(){
 			var i = 0;
+			var parentWidth = S('imageCircle').width;
+		
 			var b = setInterval(function(){
 				i+=2;
 				if(i<=200){
 					S('body').background = 'rgb(' + Number(55+i) +','+ Number(55+i) + ',' + Number(55+i) + ')';
 				}
-				//S('Identification').boxShadow = '0px 0px 10px rgba(' + Number(55 + i) + ',' + Number(55 + i) + ',' + Number(55 - i/4) +','+0.9+')'
 				if(i<40){
 					S('volume').background = 'rgb(' + Number(255 - i*6) +','+ Number(255 - i*6) + ',' + Number(255 - i*6) + ')';
 					S('volume').border = 'none'
 					S('volume').boxShadow =  'none';
+				}
+
+				parentWidth = parentWidth.replace(/px/gi, '');
+				console.log(parentWidth);
+				var dimen = Number(parentWidth) - i*2;
+				S('imageCircle').width = dimen + 'px';
+				S('imageCircle').height = dimen + 'px';
+				for(var temp = 1; temp < 8; ++temp){
+					S('object' + temp).width = dimen + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+					S('object' + temp).height = dimen + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
 				}
 			}, 10);
 
