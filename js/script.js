@@ -1,4 +1,8 @@
-function O(i){
+var 
+	ACTIVE_BUTTON = false;
+
+
+		function O(i){
 			return typeof i == 'object' ? i : document.getElementById(i)
 		}
 
@@ -10,47 +14,138 @@ function O(i){
 			return document.getElementByClassName(i)
 		}
 
+//-- Canvas --//
 
-		var button = O('clck_for_open');
+//-- Animation --//
 
-		button.addEventListener("click", function(){
+		var start_button = O('clckForOpen');
+
+		start_button.addEventListener("click", function(){
+			if(ACTIVE_BUTTON == true){
+				finishModification();
+				ACTIVE_BUTTON = false;
+				return;
+			}
+			if(ACTIVE_BUTTON == false){
+				firstModification();
+				setTimeout(function(){
+					secondModification();
+				}, 1000)
+				ACTIVE_BUTTON = true;
+				return;
+			}
+
+
+		})
+
+		function digObj(i, trigger, max){
+			if(i >= trigger){
+				return (i-trigger)*max/(200-trigger)
+			}
+		}
+
+		function firstModification(){
 			var i = 0;
+			S('imageCircle').display = 'block';
+			var dimentionSystem = 400;
 			var a = setInterval(function(){
 				i+=2;
-				var it = 255-i;
-				S('body').background = 'rgb(' + it.toString() +','+ it.toString() + ',' + it.toString() + ')';
-			}, 1);
+				//for(var temp = 1; temp < 8; ++temp){
+					//var id_obj = 'object' + temp
+					//S('object' + temp).width = digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+					//S('object' + temp).height = digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
+				//}
+				S('body').background = 'rgb(' + Number(255-i) +','+ Number(255-i) + ',' + Number(255-i) + ')';
+				//S('Identification').boxShadow = '0px 0px 10px rgba(' + Number(55 + i) + ',' + Number(55 + i) + ',' + Number(55 - i/4) +','+0.9+')'
+				if(i<40){
+					S('volume').background = 'rgb(' + Number(15 + i*6) +','+ Number(15 + i*6) + ',' + Number(15 + i*6) + ')';
+					S('volume').border = 'none'
+					S('volume').boxShadow =  '0px 0px '+ i/4 +'px rgb(' + Number(i*6) +','+ Number(i*6) + ',' + Number(i*6) + ')';
+				}
+			}, 10);
 
 			setTimeout(function(){
 				clearInterval(a)
-				GenerateUniverse()
 			}, 1000)
+		}
 
-			S('body').background = 'black'
-			S('body').backgroundImage = 'url(img/Background.png)'
-			S('Identification').boxShadow = '0px 5px 10px #FF0'
-			S('PersonalPage').boxShadow = 'none'
-			S('LinkList').visibility = 'visible'
-			button.style.display = 'none'
+		var animationButton;
 
-		})
+		function secondModification(){
+				var arcsin = 0;
+					animationButton = setInterval(function(){
+					arcsin++;
+					if(arcsin == 18){
+						arcsin = 0;
+					}
+
+					var num = arcsin - 9;
+					S('volume').boxShadow = '0px 0px ' + Number(5 + num*num/10) + 'px rgb(240,240,240)';
+				}, 100);
+			
+		}
+
+		function finishModification(){
+			var i = 0;
+			var b = setInterval(function(){
+				i+=2;
+				if(i<=200){
+					S('body').background = 'rgb(' + Number(55+i) +','+ Number(55+i) + ',' + Number(55+i) + ')';
+				}
+				//S('Identification').boxShadow = '0px 0px 10px rgba(' + Number(55 + i) + ',' + Number(55 + i) + ',' + Number(55 - i/4) +','+0.9+')'
+				if(i<40){
+					S('volume').background = 'rgb(' + Number(255 - i*6) +','+ Number(255 - i*6) + ',' + Number(255 - i*6) + ')';
+					S('volume').border = 'none'
+					S('volume').boxShadow =  'none';
+				}
+			}, 10);
+
+			setTimeout(function(){
+				clearInterval(animationButton)
+				clearInterval(b)
+				S('imageCircle').display = 'none';
+				S('volume').background = 'rgb(5,5,5)';
+			}, 1000)
+		}
+
+
+
+
+//-- ARCHIVE --//
+
+		function recovery(){
+			var i
+
+		}
 
 		function getRandomInt(min, max) {
   			return Math.floor(Math.random() * (max - min)) + min;
 		}
 
-		function CreateStar(count){
-			const pageWidth = document.documentElement.scrollWidth
-			const pageHeight = document.documentElement.scrollHeight
+		function CreateEyeButton(){
+
+			var EyeButton = document.createElement('img')
+			EyeButton.id = 'eye_button'
+			EyeButton.className = 'TwoButton'
+			document.getElementById('personalPage').appendChild(EyeButton)
+
+			S(EyeButton).position = 'absolute'
+			S(EyeButton).width = '2px'
+			S(EyeButton).height = '1px'
+			S(EyeButton).display = 'none'
+
+			return EyeButton	
+		}
+
+
+		function CreateStar(count, top, left){
 
 			var newStar = document.createElement('div')
 			newStar.id = 'star' + count
 			newStar.className = 'Star'
-			document.getElementById('PersonalPage').appendChild(newStar)
+			document.getElementById('personalPage').appendChild(newStar)
 
 			S(newStar).position = 'absolute'
-			var top = getRandomInt(100, pageHeight);
-			var left = getRandomInt(0, pageWidth);
 			S(newStar).top = top + 'px'
 			S(newStar).left = left + 'px'
 
@@ -58,113 +153,26 @@ function O(i){
 			return newStar
 		}
 
+
+
+		var array_x = new Array();
+		var array_y = new Array();
+
 		function GenerateUniverse(){
 			
 
 			for(var i=0;i<16;++i){
-				CreateStar(i)
+				const pageWidth = document.documentElement.scrollWidth
+				const pageHeight = document.documentElement.scrollHeight
+				var top = getRandomInt(100, pageHeight);
+				var left = getRandomInt(0, pageWidth);
+
+				array_x[i] = left;
+				array_y[i] = top;
+
+				CreateStar(i, top, left)
 			}
 		}
-
-		var LinkIconVk = O('vk_link')
-		var IconVk = S('vk')
-
-		var LinkIconTg = O('tg_link')
-		var IconTg = S('tg')
-
-		var LinkIconIn = O('in_link')
-		var IconIn = S('in')
-
-		LinkIconVk.addEventListener("click", function(){
-
-			if(IconVk.width === '60px'){
-				reDimenObj(IconVk, 60, 20)
-
-				O('LinkTitle').style.display = 'none' 
-
-				LinkIconVk.href = O('LinkTitle').innerHTML ;
-
-				O('LinkTitle').innerHTML = '';
-
-				return
-			}
-
-			if(IconIn.width === '60px'){
-				reDimenObj(IconIn, 60, 20)
-			}
-
-			if(IconTg.width === '60px'){
-				reDimenObj(IconTg, 60, 20)
-			}
-			
-			reDimenObj(IconVk, 20, 60)
-
-			O('LinkTitle').style.display = 'block' 
-
-			O('LinkTitle').innerHTML = O('myvk').href
-
-		})
-
-		LinkIconTg.addEventListener("click", function(){
-
-			if(IconTg.width === '60px'){
-				reDimenObj(IconTg, 60, 20)
-				IconTg.content = 'none'
-
-				
-				O('LinkTitle').style.display = 'none' 
-
-				LinkIconTg.href = O('LinkTitle').innerHTML ;
-
-				O('LinkTitle').innerHTML = '';
-
-				return
-			}
-
-			if(IconVk.width === '60px'){
-				reDimenObj(IconVk, 60, 20)
-			}
-
-			if(IconIn.width === '60px'){
-				reDimenObj(IconIn, 60, 20)
-			}
-			
-			reDimenObj(IconTg, 20, 60)
-
-			O('LinkTitle').style.display = 'block';
-
-			O('LinkTitle').innerHTML = O('mytg').href
-		})
-
-		LinkIconIn.addEventListener("click", function(){
-
-			if(IconIn.width === '60px'){
-				reDimenObj(IconIn, 60, 20)
-				IconIn.content = 'none'
-
-				O('LinkTitle').style.display = 'none' 
-
-				LinkIconIn.href = O('LinkTitle').innerHTML;
-
-				O('LinkTitle').innerHTML = '';
-
-				return
-			}
-
-			if(IconVk.width === '60px'){
-				reDimenObj(IconVk, 60, 20)
-			}
-
-			if(IconTg.width === '60px'){
-				reDimenObj(IconTg, 60, 20)
-			}
-
-			reDimenObj(IconIn, 20, 60)
-
-			O('LinkTitle').style.display = 'block' 
-
-			O('LinkTitle').innerHTML = O('myin').href
-		})
 
 		function decripts(word, key){
 			var fri = new String("");
@@ -210,28 +218,3 @@ function O(i){
 				clearInterval(interval)
 			},400)
 		}
-
-		var buttonT = document.getElementById('check');
-		var passwrd = document.getElementById('inwrd');
-
-		buttonT.addEventListener("click", function() {
-    		if(passwrd != ''){
-    			O('KeyBox').style.boxShadow = '0px 0px 15px #9F5'
-    			buttonT.style.display = 'none'
-    			passwrd.style.width = '100%'
-    			passwrd.disabled = 'true'
-    			var linkVk = O('myvk');
-    			var nameVk = linkVk.href;
-    			linkVk.href = nameVk + decripts(linkVk.innerHTML, passwrd.value);
-
-    			var linkTm = O('mytg');
-    			var nameTg = linkTm.href;
-    			linkTm.href = nameTg + decripts(linkTm.innerHTML, passwrd.value) + 'ko';
-
-    			var linkIn = O('myin');
-    			var nameIn = linkIn.href;
-    			linkIn.href = nameIn + decripts(linkIn.innerHTML, passwrd.value);
-    		}
-
-  		});
-
