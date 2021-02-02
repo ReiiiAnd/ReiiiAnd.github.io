@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 /**/
 
+html{overflow: hidden}
 
 body{
 	box-sizing: border-box;
@@ -73,7 +74,8 @@ input[name="go"]{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	margin:0;
+	display:block;
+	margin:auto;
 	position: relative;
 }
 
@@ -107,7 +109,7 @@ input[name="go"]{
 }
 
 #object2{
-	animation-duration: 50s;
+	animation-duration: 40s;
 }
 
 #object3{
@@ -115,19 +117,19 @@ input[name="go"]{
 }
 
 #object4{
-	animation-duration: 40s;
+	animation-duration: 50s;
 }
 
 #object5{
-	animation-duration: 70s;
+	animation-duration: 100s;
 }
 
 #object6{
-	animation-duration: 60s;
+	animation-duration: 200s;
 }
 
 #object7{
-	animation-duration: 80s;
+	animation-duration: 120s;
 }
 
 #buttonShell{
@@ -149,7 +151,71 @@ input[name="go"]{
 	background: rgba(0,0,0);
 }
 
+#upLeftPlace{
+
+}
+
+#upRightPlace{
+
+}
+
+#flourRightPlace{
+
+}
+
+#flourLeftPlace{
+
+}
+
+#triangleButtonShell{
+	display: none;
+}
+
+#triangleButton{
+	display:flex;
+	bottom:0;
+	left:50%;
+	width:240px;
+	height:240px;
+	position:absolute;
+	transform:translate(-50%, 50%);
+}
+
+#middleTB{
+	width:240px;
+	height:240px;
+	position: relative;
+	margin: auto;
+}
+
+#clckForLook{
+	display:block;
+}
+
+#eyeButton{
+	width:240px;
+	height:240px;
+	position: absolute;
+	left:0;
+	top:0;
+}
+
+#clouds{
+	display:none;
+	position:absolute;
+	top:50%;
+}
+
+.FlexPlace{
+	
+}
+
+.ButtonShell{
+	
+}
+
 .orbitals{
+	display:block;
 	width:30px;
 	height:30px;
 	margin:auto;
@@ -157,17 +223,27 @@ input[name="go"]{
 }
 
 .orbital{
+	display:block;
 	width:30px;
 	height:30px;
 	margin:auto;
 	position:absolute;
 	left:0;
 	top:0;
+	animation: 100s linear 0s normal none infinite running rot;
+  	-webkit-animation: 100s linear 0s normal none infinite running rot;
 }
 
 .animate{
-	animation: 100s linear 0s normal none infinite running rot;
-  	-webkit-animation: 100s linear 0s normal none infinite running rot;
+	animation: 1s linear 0s normal  running rotate180;
+  	-webkit-animation: 1s linear 0s normal  running rotate180;
+  	transform:  rotate(180deg);
+}
+
+.animate-rotate-180{
+	animation: 1s linear 0s normal  running rotateBackup;
+  	-webkit-animation: 1s linear 0s normal  running rotateBackup;
+  	transform:  rotate(180deg);
 }
 
 @keyframes rot {
@@ -187,6 +263,40 @@ input[name="go"]{
   }
 }
 
+@keyframes rotate180 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes rotate180 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotateBackup {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes rotateBackup {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 @media (max-width:540px){
 	h1,h2,h3{
 		font-size: 18px;
@@ -199,6 +309,7 @@ input[name="go"]{
 		width: 360px;
 		height: 360px;
 	}*/
+	
 }
 
 @media (max-width:360px){
@@ -213,4 +324,5 @@ input[name="go"]{
 		width: 240px;
 		height: 240px;
 	}*/
+	
 }
