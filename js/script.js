@@ -89,9 +89,11 @@ var
 	    			deg = 0;
 	    			if(ACTIVE_LINKS == 0){
 	  					O('eyeButton').style.WebkitTransform = "rotate(0deg)";
+	  					S('linksPlace').display = 'none'
 	  				}
 	  				else{
 	  					O('eyeButton').style.WebkitTransform = "rotate(180deg)";
+	  					S('linksPlace').display = 'block'
 	  				}
 	    
 	    			stop = 0;

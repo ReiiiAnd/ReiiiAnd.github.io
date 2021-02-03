@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 /**/
 
-html{overflow: hidden}
+/*html{overflow: hidden}*/
 
 body{
 	box-sizing: border-box;
@@ -92,7 +92,7 @@ input[name="go"]{
 #planetSystem{
 	display: flex;
 	height: 560px;
-	position:relative;
+	position: relative;
 }
 
 #imageCircle{
@@ -151,21 +151,103 @@ input[name="go"]{
 	background: rgba(0,0,0);
 }
 
-#upLeftPlace{
+/* -- */
+#linksPlace{
+	display: none;
+}
 
+#greeting{
+	position:absolute;
+	text-align: center;
+	color:white;
+	top:10%;
+	left:50%;
+	transform: translate(-50%, -50%);
+}
+
+#upLeftPlace{
+	position:absolute;
+	top:30%;
+	left:25%;
+	transform:translate(-50%, -50%);
+}
+
+.LinkPlace{
+	overflow: hidden;
+}
+
+.block-250{
+	display:block;
+	width:200px;
+	height:200px;
+}
+
+#opensrc1{
+	display:block;
+}
+
+#doorToVk{
+	display: flex;
+}
+
+#vkLink{
+	margin:auto;
 }
 
 #upRightPlace{
+	position:absolute;
+	top:30%;
+	left:75%;
+	transform:translate(-50%, -50%);
+}
+
+#opensrc2{
+	display: block;
+}
+
+#doorToTg{
+	display: flex;
+}
+
+#tgLink{
+	margin:auto;
+}
+
+#downLeftPlace{
+	position:absolute;
+	top:70%;
+	left:25%;
+	transform:translate(-50%, -50%);
+}
+
+#opensrc3{
+	display: block;
+}
+
+#textIntroducing{
 
 }
 
-#flourRightPlace{
-
+#downRightPlace{
+	position:absolute;
+	top:70%;
+	left:75%;
+	transform:translate(-50%, -50%);
 }
 
-#flourLeftPlace{
-
+#opensrc4{
+	display: block;
 }
+
+#doorToNN{
+	display: flex;
+}
+
+#nnLink{
+	margin:auto;
+}
+
+/* -- */
 
 #triangleButtonShell{
 	display: none;
@@ -176,9 +258,10 @@ input[name="go"]{
 	bottom:0;
 	left:50%;
 	width:240px;
-	height:240px;
+	height:120px;
 	position:absolute;
-	transform:translate(-50%, 50%);
+	transform:translate(-50%, 0%);
+	overflow:hidden;
 }
 
 #middleTB{
@@ -205,6 +288,7 @@ input[name="go"]{
 	position:absolute;
 	top:50%;
 }
+
 
 .FlexPlace{
 	
@@ -297,9 +381,14 @@ input[name="go"]{
   }
 }
 
-@media (max-width:540px){
+@media (max-width:560px){
 	h1,h2,h3{
 		font-size: 18px;
+	}
+
+	.block-250{
+		width:125px;
+		height:125px;
 	}
 	/*.orbitals{
 		width:360px;
@@ -315,6 +404,11 @@ input[name="go"]{
 @media (max-width:360px){
 	h1,h2,h3{
 		font-size: 14px;
+	}
+
+	.block-250{
+		width:100px;
+		height:100px;
 	}
 	/*.orbitals{
 		width:240px;
