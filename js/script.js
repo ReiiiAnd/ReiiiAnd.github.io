@@ -361,6 +361,8 @@ var
 				S('volume').background = 'rgb(5,5,5)';
 				S('volume').boxShadow = 'none';
 				S('triangleButtonShell').display = 'none'
+				O('eyeButton').style.WebkitTransform = "rotate(0deg)";
+	  			S('linksPlace').display = 'none'
 			}, 1000)
 		}
 
