@@ -75,15 +75,44 @@ var
 	  				dim = 0;
 	  				ACTIVE_LINKS = 2;
 	  				stop = 1
+	  				S('linksPlace').opacity = 0
+	  				S('linksPlace').display = 'block'
 	  		}
 	  		else{
 	  				dim = 180;
 	  				ACTIVE_LINKS = 0;
 	  				stop = 1
 	  		}
+
+	  		function opacityLinks(i){
+	  			var opacity
+	  			if(ACTIVE_LINKS == 0){
+	  				opacity = 1 - i/100
+	  				if(opacity > 0.1){
+	  					S('linksPlace').opacity = opacity
+	  				}
+	  				else{
+	  					S('linksPlace').opacity = 0
+	  				}
+	  			}
+	  			else{
+	  				opacity = i/100
+
+	  				if(opacity < 0.9){
+	  					S('linksPlace').opacity = opacity
+	  				}
+	  				else{
+	  					S('linksPlace').opacity = 1
+	  				}
+	  			}
+	  		}
+
 	  		function rotate(){
 	    		O('eyeButton').style.WebkitTransform = "rotate("+ Number(dim + deg)+"deg)";
+	    		S('linksPlace').opacity = deg/300;
 	    		deg = deg + 3;
+	    		opacityLinks(deg)
+
 	    		if(deg == 180){
 	    			clearInterval(id);
 	    			deg = 0;
@@ -93,7 +122,7 @@ var
 	  				}
 	  				else{
 	  					O('eyeButton').style.WebkitTransform = "rotate(180deg)";
-	  					S('linksPlace').display = 'block'
+	  					S('linksPlace').opacity = 1
 	  				}
 	    
 	    			stop = 0;
