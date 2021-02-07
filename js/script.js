@@ -30,13 +30,7 @@ var
 
 //-- Canvas --//
 
-var 
-	canvas = O('spaceCanvas');
-	ctx = canvas.getContext("2d");
 
-ctx.fillStyle = 'orange';
-S(canvas).width = window.innerWidth +'px'
-S(canvas).height = window.innerHeight +'px'
 
 //-- Animation --//
 		var 
