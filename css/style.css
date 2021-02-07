@@ -70,6 +70,12 @@ input[name="go"]{
 	border:0;
 }
 
+#spaceCanvas{
+	position: absolute;
+	top:0;
+	left:0;
+}
+
 #myPage{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -77,6 +83,17 @@ input[name="go"]{
 	display:block;
 	margin:auto;
 	position: relative;
+}
+
+#backgroundSpace{
+	position: fixed;
+	display: block;
+	overflow: hidden;
+	opacity: 0;
+}
+
+#imageSpace{
+	display:block;
 }
 
 #title{
@@ -381,7 +398,7 @@ input[name="go"]{
   }
 }
 
-@media (max-width:560px){
+@media (max-width:570px){
 	h1,h2{
 		font-size: 18px;
 	}

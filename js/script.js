@@ -18,15 +18,53 @@ var
 			return document.getElementByClassName(i)
 		}
 
+		function difMin(first, second){
+			if(first > second)return second;
+			return first;
+		}
+
+		function difMax(first, second){
+			if(first < second)return second;
+			return first;
+		}
+
 //-- Canvas --//
 
+var 
+	canvas = O('spaceCanvas');
+	ctx = canvas.getContext("2d");
+
+ctx.fillStyle = 'orange';
+S(canvas).width = window.innerWidth +'px'
+S(canvas).height = window.innerHeight +'px'
+
 //-- Animation --//
-		var pageStyle = S('myPage');
+		var 
+			pageStyle = S('myPage');
+			spaceStyle = S('backgroundSpace');
+			spaceImageStyle = S('imageSpace');
 		pageStyle.width = window.innerWidth+'px';
-		pageStyle.height = window.innerHeight+'px';
+		pageStyle.height = difMax(window.innerHeight,540)+'px';
+
+		spaceStyle.width = window.innerWidth+'px';
+		spaceStyle.height = window.innerHeight+'px';
+
+		var
+			imageDimen = difMax(window.innerHeight,window.innerWidth) / 9;
+
+		spaceImageStyle.width = imageDimen*16 + 'px'
+		spaceImageStyle.height = imageDimen*9 + 'px'
+
+		var planetSystemStyle = S('planetSystem');
+		planetSystemStyle.height = difMax(window.innerHeight*0.8,540) + 'px';
+
+
+
+
 
 		var start_button = O('clckForOpen');
 		var eye_button = O('clckForLook');
+		var	cinema;
 
 		start_button.addEventListener("click", function(){
 			if(ACTIVE_BUTTON == 2){
@@ -34,16 +72,17 @@ var
 				finishModification();
 				setTimeout(function(){
 					ACTIVE_BUTTON = 0;
-				}, 2000)
+				}, 2100)
 				return;
 			}
 			if(ACTIVE_BUTTON == 0){
 				ACTIVE_BUTTON = 1;
 				alternativeFirstModification();
 				setTimeout(function(){
+					clearInterval(cinema);
 					secondModification();
 					ACTIVE_BUTTON = 2;
-				}, 2000)
+				}, 2100)
 				return;
 			}
 
@@ -68,23 +107,7 @@ var
 
 		//var deg = 0;
 
-		function go(id){
-			console.log('1');
-  			var id = setInterval(rotate, 20);
-  			if(ACTIVE_LINKS == 0){
-	  				dim = 0;
-	  				ACTIVE_LINKS = 2;
-	  				stop = 1
-	  				S('linksPlace').opacity = 0
-	  				S('linksPlace').display = 'block'
-	  		}
-	  		else{
-	  				dim = 180;
-	  				ACTIVE_LINKS = 0;
-	  				stop = 1
-	  		}
-
-	  		function opacityLinks(i){
+		function opacityLinks(i){
 	  			var opacity
 	  			if(ACTIVE_LINKS == 0){
 	  				opacity = 1 - i/100
@@ -93,6 +116,8 @@ var
 	  				}
 	  				else{
 	  					S('linksPlace').opacity = 0
+	  					S('linksPlace').display = 'none'
+	  					
 	  				}
 	  			}
 	  			else{
@@ -105,6 +130,21 @@ var
 	  					S('linksPlace').opacity = 1
 	  				}
 	  			}
+	  		}
+
+		function go(id){
+  			var id = setInterval(rotate, 20);
+  			if(ACTIVE_LINKS == 0){
+	  				dim = 0;
+	  				ACTIVE_LINKS = 2;
+	  				stop = 1
+	  				S('linksPlace').opacity = 0
+	  				S('linksPlace').display = 'block'
+	  		}
+	  		else{
+	  				dim = 180;
+	  				ACTIVE_LINKS = 0;
+	  				stop = 1
 	  		}
 
 	  		function rotate(){
@@ -140,11 +180,6 @@ var
 			}
 		}
 
-		function difMin(first, second){
-			if(first>second)return second;
-			return first;
-		}
-
 		function alternativeFirstModification(){
 			var 
 				counter = 0
@@ -176,7 +211,7 @@ var
 				titleArt = false
 				triangleArt = false
 
-			var	cinema = setInterval(function(){
+			cinema = setInterval(function(){
 					counter+=4;
 
 					//intoducing planets System
@@ -242,7 +277,11 @@ var
 						titleStyle.opacity = opacity
 					}
 
-
+					var pct = counter/200
+					if(pct < 0.9)
+						spaceStyle.opacity = pct; 
+					else
+						spaceStyle.opacity = 1;
 
 
 				}, interval)
@@ -254,10 +293,6 @@ var
 				gradientArt = false
 				buttonArt = false
 			}
-
-			setTimeout(function() {
-				clearInterval(cinema);
-			}, 2000)
 		}
 
 		function tempSecondModification(){
@@ -321,7 +356,14 @@ var
 
 
 					}
+
 				}, 10)
+
+				setTimeout(function(){
+					clearInterval(introOfButton)
+				}, 1000)
+
+
 				animationButton = setInterval(function(){
 					arcsin++;
 					if(arcsin == 18){
@@ -334,25 +376,30 @@ var
 
 		}
 
-		function finishModification(){
-			var i = 0;
+		function prepareFinishModification(){
 			var parentWidth = S('imageCircle').width;
 			var titleStyle = S('title')
-			var triangleStyle = S('middleTB')
+			var 
+				it = 0;
+				bodyStyle = S('body');
+				volumeStyle = S('volume');
+
+			volumeStyle.border = 'none'
 			titleStyle.display = 'block'
-		
-			var b = setInterval(function(){
-				i+=2;
-				if(i<=200){
-					S('body').background = 'rgb(' + Number(55+i) +','+ Number(55+i) + ',' + Number(55+i) + ')';
+
+			var c = setInterval(function(){
+				it+=4;
+				cN = 55 + it
+				csN = 255 - it*6
+
+				if(it<=200){
+					bodyStyle.background = 'rgb(' + cN +','+ cN + ',' + cN + ')';
 				}
-				if(i<40){
-					S('volume').background = 'rgb(' + Number(255 - i*6) +','+ Number(255 - i*6) + ',' + Number(255 - i*6) + ')';
-					S('volume').border = 'none'
-					S('volume').boxShadow =  'none';
+				if(it<40){
+					volumeStyle.background = 'rgb(' + csN +','+ csN + ',' + csN + ')';
 				}
 
-				var opacity = i/100;
+				var opacity = it/100;
 				if(opacity >= 0.9){
 					titleStyle.opacity = 1;
 				}
@@ -361,37 +408,69 @@ var
 					titleStyle.opacity = opacity;
 				}
 
-
-				if(1-opacity <= 0.1){
-					triangleStyle.opacity = 0;
-				}
-
-				else{
-					triangleStyle.opacity = 1 - opacity;
-				}
+				var pct = 1 - opacity
+				if(pct>0.1)
+					spaceStyle.opacity = pct; 
+				else
+					spaceStyle.opacity = 0;
 
 				parentWidth = parentWidth.replace(/px/gi, '');
-				console.log(parentWidth);
-				var dimen = Number(parentWidth) - i*2;
+				var dimen = Number(parentWidth) - it*2;
 				S('imageCircle').width = dimen + 'px';
 				S('imageCircle').height = dimen + 'px';
 				for(var temp = 1; temp < 8; ++temp){
 					S('object' + temp).width = dimen + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
 					S('object' + temp).height = dimen + 'px'//digObj(i, 20*(7-temp+1), dimentionSystem) + 'px';
 				}
-			}, 10);
+
+			}, 20)
+
+			setTimeout(function(){
+				clearInterval(c);
+
+				bodyStyle.background = 'rgb(255,255,255)'
+				volumeStyle.boxShadow = 'none'
+				volumeStyle.background = 'rgb(5,5,5)';
+				S('title').opacity = 1;
+				S('imageCircle').display = 'none';
+
+			}, 1000)
+		}
+
+		function finishModification(){
+			var i = 0;
+			var triangleStyle = S('middleTB')
+			
+			if(ACTIVE_LINKS == 2){
+				ACTIVE_LINKS = 0;
+			}
+		
+			var b = setInterval(function(){
+				i+=4;
+
+				var opacity = 1 - i/100;
+
+
+				if(opacity <= 0.1){
+					triangleStyle.opacity = 0;
+				}
+
+				else{
+					triangleStyle.opacity = opacity;
+				}
+
+				if(ACTIVE_LINKS == 0){
+					opacityLinks(i);
+				}
+			}, 20);
 
 			setTimeout(function(){
 				clearInterval(animationButton)
 				clearInterval(b)
-				S('title').opacity = 1;
-				S('body').background = 'rgb(255, 255, 255)';
-				S('imageCircle').display = 'none';
-				S('volume').background = 'rgb(5,5,5)';
-				S('volume').boxShadow = 'none';
 				S('triangleButtonShell').display = 'none'
 				O('eyeButton').style.WebkitTransform = "rotate(0deg)";
-	  			S('linksPlace').display = 'none'
+
+				prepareFinishModification();
 			}, 1000)
 		}
 
