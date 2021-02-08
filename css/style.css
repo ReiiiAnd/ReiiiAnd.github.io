@@ -172,7 +172,7 @@ input[name="go"]{
 	width: 22px;
 	height: 22px;
 	border-radius:100%;
-	background: rgba(0,0,0);
+	background: rgb(0,0,0);
 }
 
 /* -- */
@@ -313,15 +313,6 @@ input[name="go"]{
 	top:50%;
 }
 
-
-.FlexPlace{
-	
-}
-
-.ButtonShell{
-	
-}
-
 .orbitals{
 	display:block;
 	width:30px;
@@ -348,10 +339,23 @@ input[name="go"]{
   	transform:  rotate(180deg);
 }
 
-.animate-rotate-180{
-	animation: 1s linear 0s normal  running rotateBackup;
-  	-webkit-animation: 1s linear 0s normal  running rotateBackup;
-  	transform:  rotate(180deg);
+.animate-button-shadow{
+	animation: 2s linear 0s normal none infinite running buttonShadow;
+	-webkit-animation: 2s linear 0s normal none infinite running buttonShadow;
+}
+
+@keyframes buttonShadow{
+	0% {
+		box-shadow: 0px 0px 5px rgb(240, 240, 240)
+	}
+
+	50%{
+		box-shadow: 0px 0px 15px rgb(240,240,240)
+	}
+
+	100% {
+		box-shadow: 0px 0px 5px rgb(240, 240, 240)
+	}
 }
 
 @keyframes rot {
@@ -371,40 +375,6 @@ input[name="go"]{
   }
 }
 
-@keyframes rotate180 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-}
-@-webkit-keyframes rotate180 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-}
-
-@keyframes rotateBackup {
-  0% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-@-webkit-keyframes rotateBackup {
-  0% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 @media (max-width:570px){
 	h1,h2{
 		font-size: 18px;
@@ -418,14 +388,6 @@ input[name="go"]{
 		width:125px;
 		height:125px;
 	}
-	/*.orbitals{
-		width:360px;
-		height:360px;
-	}
-	.orbital{
-		width: 360px;
-		height: 360px;
-	}*/
 	
 }
 
@@ -442,13 +404,5 @@ input[name="go"]{
 		width:100px;
 		height:100px;
 	}
-	/*.orbitals{
-		width:240px;
-		height:240px;
-	}
-	.orbital{
-		width: 240px;
-		height: 240px;
-	}*/
 	
 }
